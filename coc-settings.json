@@ -1,0 +1,8 @@
+{
+  "coc.preferences.confirmKey": "<CR>",
+  "coc.preferences.useQuickfixForLocations": true,
+  "coc.preferences.usePlaceholders": true,
+  "coc.preferences.autoUpdate": true,
+  "coc.snippet.next": "<C-j>",
+  "coc.snippet.prev": "<C-k>"
+}
