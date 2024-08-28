@@ -26,9 +26,9 @@ return {
 		require("luasnip.loaders.from_vscode").lazy_load()
 
 		cmp.setup({
-			completion = {
-				completion = { completeopt = "menu,menuone,noinsert" },
-			},
+			-- completion = {
+			-- 	completion = { completeopt = "menu,menuone,noinsert" },
+			-- },
 			snippet = { -- configure how nvim-cmp interacts with snippet engine
 				expand = function(args)
 					luasnip.lsp_expand(args.body)
@@ -41,7 +41,7 @@ return {
 				["<C-f>"] = cmp.mapping.scroll_docs(4),
 				["<C-a>"] = cmp.mapping.complete(), -- show completion suggestions
 				["<C-e>"] = cmp.mapping.abort(), -- close completion window
-				["<CR>"] = cmp.mapping.confirm({ select = true }),
+				["<TAB>"] = cmp.mapping.confirm({ select = true }),
 			}),
 			-- sources for autocompletion
 			sources = cmp.config.sources({

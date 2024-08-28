@@ -27,12 +27,17 @@ return {
 		-- Set up the Ruby LSP server
 		lspconfig.ruby_lsp.setup({
 			cmd = { vim.fn.expand("~/.rbenv/shims/ruby-lsp") },
-			capabilities = capabilities,
+			settings = {
+				diagnostics = {
+					disabled = {
+						"Lint/Debugger", -- Disable linting for `binding.pry` and `debugger`
+					},
+				},
+			},
 		})
 
 		-- Set up the Lua LSP server
 		lspconfig.lua_ls.setup({
-			capabilities = capabilities,
 			settings = {
 				Lua = {
 					diagnostics = {

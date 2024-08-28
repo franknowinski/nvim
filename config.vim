@@ -1,11 +1,12 @@
-inoremap <C-j> <Down>
-
-inoremap <C-k> <Up>
-
 " Find and replace in file
 nmap <space>F :%s/<c-r><c-w>//g<left><left>
 
-" nmap <leader>ab :%Subvert/<c-r><c-w>//g<left><left>
+" vnoremap <leader>am :<C-U>execute 'normal! /\<method\>\\<CR>'<CR>
+
+autocmd BufRead,BufNewFile *.slim setlocal suffixesadd+=.slim
+" set path+=app/views
+
+set path=$PWD/**
 
 
 " Ctags
@@ -33,7 +34,6 @@ cnoremap <C-e> <End>
 " Git Blame
 map <leader>g :Git blame<CR>
 
-
 " Map <leader>z in visual mode to the function
 vnoremap <leader>z :GBrowse<CR>
 
@@ -52,6 +52,9 @@ nnoremap q :q<CR>
 
 " Edit files
 nmap <space>e :edit %%
+
+" Close all other windows
+nnoremap <leader>x :only<CR>
 
 " Rename Current File
 function! RenameFile()
@@ -75,7 +78,7 @@ vnoremap <leader>ff :m '<-2<CR>gv=gv
 nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
 nnoremap <leader>= :wincmd =<cr>
 
-" " coc key bindings
+" " " coc key bindings
 " inoremap <silent><expr> <TAB>
 "       \ pumvisible() ? coc#_select_confirm() :
 "       \ coc#expandableOrJumpable() ?
@@ -87,7 +90,7 @@ nnoremap <leader>= :wincmd =<cr>
 "   let col = col('.') - 1
 "   return !col || getline('.')[col - 1]  =~# '\s'
 " endfunction
-"
+
 " let g:coc_snippet_next = '<tab>'
 
 " Promote Variable to Rspec Let

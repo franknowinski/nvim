@@ -1,4 +1,4 @@
-return {
-	"tpope/vim-rails",
-	ft = { "ruby" },
-}
+-- return {
+-- 	"tpope/vim-rails",
+-- 	ft = { "ruby" },
+-- }

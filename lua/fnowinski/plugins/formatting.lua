@@ -23,18 +23,18 @@ return {
 				ruby = { "standardrb" },
 				slim = { "prettier" },
 			},
-			format_after_save = {
-				lsp_fallback = true,
-				async = true,
-				timeout_ms = 2000,
-			},
+			-- format_on_save = {
+			-- 	lsp_fallback = false,
+			-- 	async = false,
+			-- 	timeout_ms = 2000,
+			-- },
 		})
 
 		vim.keymap.set({ "n", "v" }, "<space>P", function()
 			conform.format({
-				lsp_fallback = true,
-				async = false,
-				timeout_ms = 1000,
+				lsp_fallback = false,
+				async = true,
+				timeout_ms = 2000,
 			})
 		end, { desc = "Format file or range (in visual mode)" })
 	end,
