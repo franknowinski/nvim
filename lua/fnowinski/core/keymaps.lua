@@ -22,9 +22,6 @@ keymap.set("n", "<space>q", "<cmd>q<CR>", { desc = "Close window" })
 keymap.set("n", "<space>Q", "<cmd>qa!<CR>", { desc = "Quit session" })
 keymap.set("n", "<space>b", ":b#<CR>", { desc = "Go to previous buffer" })
 
--- keymap for sorting lines in normal mode
-keymap.set("n", "<leader>S", ":sort<CR>", { desc = "Sort lines in file" })
-
 -- Insert mode mappings
 keymap.set(
 	"i",

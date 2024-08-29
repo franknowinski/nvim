@@ -8,6 +8,8 @@ autocmd BufRead,BufNewFile *.slim setlocal suffixesadd+=.slim
 
 set path=$PWD/**
 
+" Sort 
+vnoremap <leader>S :sort<cr>
 
 " Ctags
 set tags=tags;/
