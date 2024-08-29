@@ -28,13 +28,36 @@ return {
 			end,
 		})
 
+		local function find_project_root()
+			local dir = vim.fn.expand("%:p:h") -- Get the current directory
+			while dir ~= "/" do
+				if vim.fn.isdirectory(dir .. "/.git") == 1 then
+					return dir
+				end
+				dir = vim.fn.fnamemodify(dir, ":h") -- Go up one directory
+			end
+			return nil
+		end
+
+		local function relative_path_from_project_root(path)
+			local project_root = find_project_root()
+			if not project_root then
+				return path -- If project root is not found, return the original path
+			end
+			return vim.fn.fnamemodify(path, ":p"):sub(#project_root + 2) -- Remove project root prefix
+		end
+
 		local function filenameFirst(_, path)
 			local tail = vim.fs.basename(path)
-			local parent = vim.fs.dirname(path)
-			if parent == "." then
+			local parent = relative_path_from_project_root(vim.fs.dirname(path))
+
+			local relative_path_with_filename = parent .. tail
+
+			-- Format the output with the truncated parent path
+			if parent == "" or parent == "." then
 				return tail
 			end
-			return string.format("%s\t\t%s", tail, parent)
+			return string.format("%s\t\t%s", tail, relative_path_with_filename)
 		end
 
 		telescope.setup({
@@ -236,7 +259,7 @@ return {
 				search = "",
 				search_dirs = dir and { dir } or nil,
 				additional_args = function()
-					return exclusions
+					return vim.iter(exclusions):flatten():totable()
 				end,
 			})
 		end
@@ -378,14 +401,12 @@ return {
 		-- ======================================================================
 
 		local function grep_exact_word_in_dir(dir)
-			print("Function called with dir:", dir) -- Check if the function is called
-			vim.api.nvim_out_write("Function called with dir: " .. dir .. "\n") -- Check if the function is called
-
 			require("telescope").extensions.live_grep_args.live_grep_args({
 				search_dirs = { dir },
 				initial_query = "",
+				path_display = filenameFirst,
 				additional_args = function(_)
-					return exclusions
+					return vim.iter(exclusions):flatten():totable()
 				end,
 			})
 		end
@@ -395,11 +416,10 @@ return {
 			grep_exact_word_in_dir(vim.fn.expand("%:p:h"))
 		end, { desc = "Exact word in the current file's directory" })
 
-		-- ======================= Exact Word in App Directory =================================
+		-- ======================= Exact Word in Directory =================================
 		keymap.set("n", "<space>aa", function()
 			grep_exact_word_in_dir()
 		end, { desc = "Exact word in app directory" })
-
 		-- ======================= Exact Word in App Directory =================================
 		keymap.set("n", "<space>sa", function()
 			grep_exact_word_in_dir("app")
