@@ -228,7 +228,7 @@ return {
 		--                          Fuzzy Search By String
 		-- ======================================================================
 
-		local function grep_word_in_dir(dir)
+		local function fuzzy_search_word_in_dir(dir)
 			require("telescope.builtin").grep_string({
 				shorten_path = true,
 				word_match = "-w",
@@ -244,58 +244,58 @@ return {
 		-- =======================  Fuzzy Current Directory  ==========================
 		local function grep_word_in_current_dir()
 			local current_dir = vim.fn.expand("%:p:h") -- Get the directory of the current file
-			grep_word_in_dir(current_dir)
+			fuzzy_search_word_in_dir(current_dir)
 		end
 		keymap.set("n", "<space>fd", grep_word_in_current_dir, { desc = "Grep word in current directory" })
 
 		-- =======================  Fuzzy App Directory  ==============================
 		keymap.set("n", "<space>fa", function()
-			grep_word_in_dir("app")
+			fuzzy_search_word_in_dir("app")
 		end, { desc = "Search word in app directory" })
 
 		-- =======================  Fuzzy Models Directory  ============================
 		keymap.set("n", "<space>fm", function()
-			grep_word_in_dir("app/models")
+			fuzzy_search_word_in_dir("app/models")
 		end, { desc = "Search word in app/models directory" })
 
 		-- =======================  Fuzzy Controllers Directory  =======================
 		keymap.set("n", "<space>fc", function()
-			grep_word_in_dir("app/controllers")
+			fuzzy_search_word_in_dir("app/controllers")
 		end, { desc = "Search word in app/controllers directory" })
 
 		-- =======================  Fuzzy Views Directory  ============================
 		keymap.set("n", "<space>fv", function()
-			grep_word_in_dir("app/views")
+			fuzzy_search_word_in_dir("app/views")
 		end, { desc = "Search word in app/views directory" })
 
 		-- =======================  Fuzzy Helpers Directory  ===========================
 		keymap.set("n", "<space>fh", function()
-			grep_word_in_dir("app/helpers")
+			fuzzy_search_word_in_dir("app/helpers")
 		end, { desc = "Search word in app/helpers directory" })
 
 		-- =======================  Fuzzy Services Directory  ==========================
 		keymap.set("n", "<space>fs", function()
-			grep_word_in_dir("app/services")
+			fuzzy_search_word_in_dir("app/services")
 		end, { desc = "Search word in app/services directory" })
 
 		-- =======================  Fuzzy Lib Directory  ===============================
 		keymap.set("n", "<space>fl", function()
-			grep_word_in_dir("lib")
+			fuzzy_search_word_in_dir("lib")
 		end, { desc = "Search word in lib directory" })
 
 		-- =======================  Fuzzy Spec Directory  ==============================
 		keymap.set("n", "<space>ft", function()
-			grep_word_in_dir("spec")
+			fuzzy_search_word_in_dir("spec")
 		end, { desc = "Search word in spec directory" })
 
 		-- =======================  Fuzzy Config Directory  ============================
 		keymap.set("n", "<space>fC", function()
-			grep_word_in_dir("config")
+			fuzzy_search_word_in_dir("config")
 		end, { desc = "Search word in config directory" })
 
 		-- =======================  Fuzzy Factories Directory  ========================
 		keymap.set("n", "<space>fF", function()
-			grep_word_in_dir("spec/factories")
+			fuzzy_search_word_in_dir("spec/factories")
 		end, { desc = "Search word in spec/factories directory" })
 
 		-- ======================================================================
@@ -378,6 +378,9 @@ return {
 		-- ======================================================================
 
 		local function grep_exact_word_in_dir(dir)
+			print("Function called with dir:", dir) -- Check if the function is called
+			vim.api.nvim_out_write("Function called with dir: " .. dir .. "\n") -- Check if the function is called
+
 			require("telescope").extensions.live_grep_args.live_grep_args({
 				search_dirs = { dir },
 				initial_query = "",
@@ -389,7 +392,7 @@ return {
 
 		-- ======================= Exact Word in Current File's Directory ======================
 		keymap.set("n", "<space>sd", function()
-			grep_word_in_dir(vim.fn.expand("%:p:h"))
+			grep_exact_word_in_dir(vim.fn.expand("%:p:h"))
 		end, { desc = "Exact word in the current file's directory" })
 
 		-- ======================= Exact Word in App Directory =================================
