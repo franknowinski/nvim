@@ -1,12 +1,21 @@
 " Find and replace in file
 nmap <space>F :%s/<c-r><c-w>//g<left><left>
 
-" vnoremap <leader>am :<C-U>execute 'normal! /\<method\>\\<CR>'<CR>
+let g:rails_projections = {
+      \ "app/controllers/*_controller.rb": {
+      \   "test": [
+      \     "spec/controllers/{}_controller_spec.rb",
+      \     "spec/requests/{}_spec.rb"
+      \   ],
+      \ },
+      \ "spec/requests/*_spec.rb": {
+      \   "alternate": [
+      \     "app/controllers/{}_controller.rb",
+      \   ],
+      \ }}
 
-autocmd BufRead,BufNewFile *.slim setlocal suffixesadd+=.slim
-" set path+=app/views
-
-set path=$PWD/**
+"set suffixesadd=.yml,.rb,.js,.html,.css
+"set path=$PWD/**
 
 " Sort 
 vnoremap <leader>S :sort<cr>

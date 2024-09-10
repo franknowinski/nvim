@@ -72,7 +72,7 @@ return {
 						["<Esc>"] = actions.close,
 						["<C-p>"] = actions.close,
 						["<C-n>"] = actions.cycle_history_next,
-						["<C-h>"] = actions.cycle_history_prev,
+						["<C-l>"] = actions.cycle_history_prev,
 					},
 				},
 				layout_config = {
@@ -172,10 +172,10 @@ return {
 			})
 		end, { desc = "Fuzzy find files including hidden files with custom rg options" })
 
-		-- keymap.set("n", "<leader>jr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
 		keymap.set("n", "<leader>aa", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
 		keymap.set("n", "<leader>jt", "<cmd>TodoTelescope<cr>", { desc = "Find todos" })
 		keymap.set("n", "<leader>m", "<cmd>Telescope buffers<cr>", { desc = "Fuzzy find recent files" })
+		keymap.set("n", "<leader>re", "<cmd>Telescope resume<cr>", { desc = "Resume search" })
 
 		-- ======================================================================
 		--                          Find Files
@@ -271,17 +271,22 @@ return {
 		end
 		keymap.set("n", "<space>fd", grep_word_in_current_dir, { desc = "Grep word in current directory" })
 
+		-- =======================  Fuzzy Current Working Dir  ========================
+		keymap.set("n", "<space>ff", function()
+			fuzzy_search_word_in_dir()
+		end, { desc = "Search word in current working directory" })
+
 		-- =======================  Fuzzy App Directory  ==============================
 		keymap.set("n", "<space>fa", function()
 			fuzzy_search_word_in_dir("app")
 		end, { desc = "Search word in app directory" })
 
-		-- =======================  Fuzzy Models Directory  ============================
+		-- =======================  Fuzzy Models Directory  ===========================
 		keymap.set("n", "<space>fm", function()
 			fuzzy_search_word_in_dir("app/models")
 		end, { desc = "Search word in app/models directory" })
 
-		-- =======================  Fuzzy Controllers Directory  =======================
+		-- =======================  Fuzzy Controllers Directory  ======================
 		keymap.set("n", "<space>fc", function()
 			fuzzy_search_word_in_dir("app/controllers")
 		end, { desc = "Search word in app/controllers directory" })

@@ -9,6 +9,9 @@ return {
 		local treesitter = require("nvim-treesitter.configs")
 
 		treesitter.setup({
+			opts = {
+				endwise = true,
+			},
 			highlight = {
 				enable = true,
 			},

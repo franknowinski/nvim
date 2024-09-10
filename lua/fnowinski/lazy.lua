@@ -14,8 +14,6 @@ vim.opt.rtp:prepend(lazypath)
 -- Disable auto-indenting for certain file types
 vim.cmd([[autocmd FileType ruby setlocal indentkeys-=<:]])
 
--- 	---- { import = "fnowinski.plugins.nvim-coc" },
-
 local imports = {
 	{ import = "fnowinski.plugins.telescope" },
 	{ import = "fnowinski.plugins.abolish" },
@@ -53,8 +51,9 @@ local imports = {
 	{ import = "fnowinski.plugins.vim-test" },
 	{ import = "fnowinski.plugins.vim-wiki" },
 	{ import = "fnowinski.plugins.which-key" },
-	-- { import = "fnowinski.plugins.vim-multiple-cursors" },
 	{ import = "fnowinski.plugins.vim-ruby" },
+	{ import = "fnowinski.plugins.vim-rails" },
+	{ import = "fnowinski.plugins.multicursors" },
 	{ import = "fnowinski.plugins.copilot" },
 	{ import = "fnowinski.plugins.lsp" },
 }

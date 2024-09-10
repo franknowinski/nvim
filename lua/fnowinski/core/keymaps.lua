@@ -18,7 +18,7 @@ keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }
 
 -- write and close window
 keymap.set("n", "<space>w", "<cmd>w<CR>", { desc = "Write window" })
-keymap.set("n", "<space>q", "<cmd>q<CR>", { desc = "Close window" })
+keymap.set("n", "<space>q", "<cmd>silent! q<CR>", { desc = "Close window" })
 keymap.set("n", "<space>Q", "<cmd>qa!<CR>", { desc = "Quit session" })
 keymap.set("n", "<space>b", ":b#<CR>", { desc = "Go to previous buffer" })
 

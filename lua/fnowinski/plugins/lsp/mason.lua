@@ -40,6 +40,7 @@ return {
 				"ruby_lsp",
 				"rubocop",
 				"solargraph",
+				"yamllint",
 			},
 		})
 
