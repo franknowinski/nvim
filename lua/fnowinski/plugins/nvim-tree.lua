@@ -19,6 +19,16 @@ return {
 					padding = "  ", -- Add two spaces as padding
 				},
 			},
+			lua = {
+				icon = " ", -- No icon for Lua files
+				color = "#6d8086",
+				name = "Lua",
+			},
+			ruby = {
+				icon = " ", -- No icon for Lua files
+				color = "#6d8086",
+				name = "Lua",
+			},
 			color_icons = true,
 			default = true,
 		})

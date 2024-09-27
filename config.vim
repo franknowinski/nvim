@@ -4,8 +4,7 @@ nmap <space>F :%s/<c-r><c-w>//g<left><left>
 let g:rails_projections = {
       \ "app/controllers/*_controller.rb": {
       \   "test": [
-      \     "spec/controllers/{}_controller_spec.rb",
-      \     "spec/requests/{}_spec.rb"
+      \     "spec/controllers/{}_controller_spec.rb",  "spec/requests/{}_spec.rb"
       \   ],
       \ },
       \ "spec/requests/*_spec.rb": {
@@ -17,7 +16,10 @@ let g:rails_projections = {
 "set suffixesadd=.yml,.rb,.js,.html,.css
 "set path=$PWD/**
 
-" Sort 
+" Strip whitespace on write
+autocmd BufWritePre * :%s/\s\+$//e
+
+" Sort
 vnoremap <leader>S :sort<cr>
 
 " Ctags
@@ -86,8 +88,8 @@ inoremap <leader>vv <Esc>:m .+1<CR>==gi
 inoremap <leader>ff <Esc>:m .-2<CR>==gi
 vnoremap <leader>vv :m '>+1<CR>gv=gv
 vnoremap <leader>ff :m '<-2<CR>gv=gv
-nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
-nnoremap <leader>= :wincmd =<cr>
+"nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
+"nnoremap <leader>= :wincmd =<cr>
 
 " " " coc key bindings
 " inoremap <silent><expr> <TAB>

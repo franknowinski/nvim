@@ -20,7 +20,9 @@ keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }
 keymap.set("n", "<space>w", "<cmd>w<CR>", { desc = "Write window" })
 keymap.set("n", "<space>q", "<cmd>silent! q<CR>", { desc = "Close window" })
 keymap.set("n", "<space>Q", "<cmd>qa!<CR>", { desc = "Quit session" })
-keymap.set("n", "<space>b", ":b#<CR>", { desc = "Go to previous buffer" })
+keymap.set("n", "<space>b", function()
+	vim.cmd("b#")
+end, { desc = "Go to previous buffer" })
 
 -- Insert mode mappings
 keymap.set(
@@ -53,3 +55,29 @@ keymap.set(
 	"O<%= binding.pry%>",
 	{ noremap = true, silent = true, desc = "Yank word and insert '<%= binding.pry %>'" }
 )
+
+---------------- Copilot Chat Keymaps -------------------
+keymap.set("n", "<leader>cm", function()
+	local input = vim.fn.input("Quick Chat: ")
+	if input ~= "" then
+		require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+	end
+end, { desc = "CopilotChat - Quick chat" })
+
+-- ---------------- CopilotChat Toggle -------------------
+keymap.set("n", "<leader>cc", function()
+	require("CopilotChat").toggle() -- Toggle the CopilotChat window
+end, { desc = "CopilotChat - Toggle chat" })
+
+keymap.set("v", "<leader>cv", ":'<,'>CopilotChat<CR>", { desc = "CopilotChat - Visual mode" })
+
+---------------- CopilotChat  Explain -------------------
+keymap.set("n", "<leader>ce", "<cmd>CopilotChatExplain<CR>", { desc = "CopilotChat - Explain" })
+keymap.set("v", "<leader>ce", "<cmd>CopilotChatExplain<CR>", { desc = "CopilotChat - Explain" })
+
+---------------- CopilotChat  Fix -------------------
+keymap.set("n", "<leader>cf", "<cmd>CopilotChatFix<CR>", { desc = "CopilotChat - Fix" })
+keymap.set("v", "<leader>cf", "<cmd>CopilotChatFix<CR>", { desc = "CopilotChat - Fix" })
+
+--- Dismiss noice messages ---------
+keymap.set("n", "<leader>nd", "<cmd>NoiceDismiss<CR>", { desc = "Dismiss Noice Message" })

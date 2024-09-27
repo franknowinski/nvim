@@ -20,10 +20,12 @@ local imports = {
 	{ import = "fnowinski.plugins.alpha" },
 	{ import = "fnowinski.plugins.autosession" },
 	{ import = "fnowinski.plugins.autopairs" },
-	{ import = "fnowinski.plugins.bufferline" },
+	-- { import = "fnowinski.plugins.bufferline" },
 	{ import = "fnowinski.plugins.colorscheme" },
+	{ import = "fnowinski.plugins.copilot" },
+	{ import = "fnowinski.plugins.copilotchat" },
 	{ import = "fnowinski.plugins.comment" },
-	{ import = "fnowinski.plugins.dessing" },
+	{ import = "fnowinski.plugins.dressing" },
 	{ import = "fnowinski.plugins.easy-motion" },
 	{ import = "fnowinski.plugins.endwise" },
 	{ import = "fnowinski.plugins.formatting" },
@@ -32,6 +34,7 @@ local imports = {
 	{ import = "fnowinski.plugins.linting" },
 	{ import = "fnowinski.plugins.lualine" },
 	{ import = "fnowinski.plugins.neotags" },
+	{ import = "fnowinski.plugins.noice" },
 	{ import = "fnowinski.plugins.nvim-cmp" },
 	{ import = "fnowinski.plugins.nvim-colorizer" },
 	{ import = "fnowinski.plugins.nvim-tree" },
@@ -54,8 +57,8 @@ local imports = {
 	{ import = "fnowinski.plugins.vim-ruby" },
 	{ import = "fnowinski.plugins.vim-rails" },
 	{ import = "fnowinski.plugins.multicursors" },
-	{ import = "fnowinski.plugins.copilot" },
 	{ import = "fnowinski.plugins.lsp" },
+	{ import = "fnowinski.plugins.winresizer" },
 }
 
 require("lazy").setup({ imports }, {

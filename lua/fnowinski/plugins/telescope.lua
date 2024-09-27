@@ -129,6 +129,8 @@ return {
 			},
 		})
 
+		require("telescope").load_extension("noice")
+
 		local exclusions = {
 			"--hidden",
 			"--no-ignore",
@@ -161,6 +163,8 @@ return {
 			"!**/app/assets/builds/**", -- Ignore app/assets/builds directory
 			"--glob",
 			"!**/app/javascript/images/*", -- Ignore app/javascript/images directory
+			"--glob",
+			"!**/vendor/**", -- Ignore app/javascript/images directory
 		}
 
 		-- set keymaps
