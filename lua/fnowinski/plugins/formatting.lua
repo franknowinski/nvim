@@ -8,8 +8,8 @@ return {
 			formatters_by_ft = {
 				javascript = { "prettier" },
 				typescript = { "prettier" },
-				javascriptreact = { "prettier" },
-				typescriptreact = { "prettier" },
+				javascriptreact = { "eslint_custom" },
+				typescriptreact = { "eslint_custom" },
 				svelte = { "prettier" },
 				css = { "prettier" },
 				html = { "prettier" },
@@ -22,6 +22,7 @@ return {
 				lua = { "stylua" },
 				python = { "isort", "black" },
 				ruby = { "standardrb" },
+				ruby_spec = { "rubocop" },
 				slim = { "prettier" },
 			},
 			-- format_on_save = {

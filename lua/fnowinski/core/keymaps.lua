@@ -71,6 +71,9 @@ end, { desc = "CopilotChat - Toggle chat" })
 
 keymap.set("v", "<leader>cv", ":'<,'>CopilotChat<CR>", { desc = "CopilotChat - Visual mode" })
 
+
+keymap.set("v", "<leader>ct", ":'<,'>CopilotChatTests<CR>", { desc = "CopilotChat - Visual mode" })
+
 ---------------- CopilotChat  Explain -------------------
 keymap.set("n", "<leader>ce", "<cmd>CopilotChatExplain<CR>", { desc = "CopilotChat - Explain" })
 keymap.set("v", "<leader>ce", "<cmd>CopilotChatExplain<CR>", { desc = "CopilotChat - Explain" })

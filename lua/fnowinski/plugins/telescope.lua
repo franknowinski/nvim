@@ -164,7 +164,7 @@ return {
 			"--glob",
 			"!**/app/javascript/images/*", -- Ignore app/javascript/images directory
 			"--glob",
-			"!**/vendor/**", -- Ignore app/javascript/images directory
+			"!**/vendor/**", -- Ignore vendor directory
 		}
 
 		-- set keymaps
@@ -172,7 +172,23 @@ return {
 
 		keymap.set("n", "<leader>ff", function()
 			require("telescope.builtin").find_files({
-				find_command = { "rg", "--ignore", "--hidden", "--files", "-u" },
+				find_command = {
+					"rg",
+					"--ignore",
+					"--hidden",
+					"--files",
+					"-u",
+					"--glob",
+					"!**/vendor/**",
+					"--glob",
+					"!**/node_modules/**",
+					"--glob",
+					"!**/public/**",
+					"--glob",
+					"!**/log/**",
+					"--glob",
+					"!**/tmp/**",
+				},
 			})
 		end, { desc = "Fuzzy find files including hidden files with custom rg options" })
 
