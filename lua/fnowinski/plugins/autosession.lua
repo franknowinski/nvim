@@ -29,7 +29,8 @@ return {
 		})
 
 		-- Set session options
-		vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+		vim.o.sessionoptions = "buffers,curdir,tabpages,winsize"
+		-- vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 		-- Define the custom command to clear all buffers and open a new one
 		vim.api.nvim_create_user_command("ClearAllBuffers", function()

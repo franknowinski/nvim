@@ -84,10 +84,15 @@ return {
 					horizontal = {
 						width = { padding = 1 },
 						height = { padding = 1 },
-						-- preview_width = 0.4, -- Set preview pane width to 40% of the total width
-						-- results_width = 0.6,
+						preview_width = 0.5, -- Set preview pane width to 40% of the total width
+						results_width = 0.5,
 					},
 				},
+			},
+			file_ignore_patterns = {
+				"node_modules",
+				"spec/vcr/*",
+				"log",
 			},
 			pickers = {
 				find_files = {
@@ -117,11 +122,6 @@ return {
 					},
 				},
 			},
-			file_ignore_patterns = {
-				"node_modules",
-				"spec/vcr/*",
-				"log",
-			},
 			extensions = {
 				live_grep_args = {
 					path_display = filenameFirst,
@@ -139,6 +139,10 @@ return {
 			"!**/.git/**", -- Ignore .git directory
 			"--glob",
 			"!**/.tmp/**", -- Ignore .tmp directory
+			"--glob",
+			"!**/tmp/**", -- Ignore tmp directory
+			"--glob",
+			"!**/ea_templates/**", -- Ignore ea_templates
 			"--glob",
 			"!**/spec/vcr/**", -- Ignore /spec/vcr directory
 			"--glob",
@@ -192,7 +196,7 @@ return {
 			})
 		end, { desc = "Fuzzy find files including hidden files with custom rg options" })
 
-		keymap.set("n", "<leader>aa", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
+		keymap.set("n", "<leader>A", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
 		keymap.set("n", "<leader>jt", "<cmd>TodoTelescope<cr>", { desc = "Find todos" })
 		keymap.set("n", "<leader>m", "<cmd>Telescope buffers<cr>", { desc = "Fuzzy find recent files" })
 		keymap.set("n", "<leader>re", "<cmd>Telescope resume<cr>", { desc = "Resume search" })
@@ -355,6 +359,9 @@ return {
 			require("telescope.builtin").live_grep({
 				search_dirs = { dir },
 				default_text = word,
+        additional_args = function()
+            return exclusions
+        end,
 			})
 		end
 
@@ -425,13 +432,15 @@ return {
 		--                          Exact Word Search
 		-- ======================================================================
 
+		-- old
 		local function grep_exact_word_in_dir(dir)
 			require("telescope").extensions.live_grep_args.live_grep_args({
 				search_dirs = { dir },
 				initial_query = "",
 				path_display = filenameFirst,
 				additional_args = function(_)
-					return vim.iter(exclusions):flatten():totable()
+					return exclusions
+					-- return vim.iter(exclusions):flatten():totable()
 				end,
 			})
 		end
@@ -444,7 +453,7 @@ return {
 		-- ======================= Exact Word in Directory =================================
 		keymap.set("n", "<space>aa", function()
 			grep_exact_word_in_dir()
-		end, { desc = "Exact word in app directory" })
+		end, { desc = "Exact word in repo" })
 		-- ======================= Exact Word in App Directory =================================
 		keymap.set("n", "<space>sa", function()
 			grep_exact_word_in_dir("app")

@@ -23,6 +23,6 @@ return {
 	},
   {
     "preservim/vimux",
-    event = "VimEnter", 
+    event = "VimEnter",
   },
 }

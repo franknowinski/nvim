@@ -19,12 +19,5 @@ return {
 			close_command = "bdelete! %d", -- Custom close command to ensure buffers close correctly
 			right_mouse_command = "bdelete! %d", -- Right-click close command
 		},
-		-- options = {
-		--   mode = "tabs",
-		--   separator_style = "slant",
-		--   indicator = {
-		--     style = 'none', -- This removes the `?` at the end of the tab
-		--   },
-		-- },
 	},
 }
