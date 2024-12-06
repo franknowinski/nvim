@@ -8,6 +8,7 @@ return {
 				file = "--format documentation",
 				suite = "--tag ~slow",
 			}
+			vim.g["test#ruby#rspec#command"] = "bundle exec spring rspec"  -- Use Spring to run RSpec
 			vim.g["test#strategy"] = "vimux"
 			vim.g["test#javascript#jest#file_pattern"] = ".*\\.spec\\.js"
 
@@ -21,8 +22,8 @@ return {
 		"tpope/vim-dispatch",
 		event = "VeryLazy",
 	},
-  {
-    "preservim/vimux",
-    event = "VimEnter",
-  },
+	{
+		"preservim/vimux",
+		event = "VimEnter",
+	},
 }

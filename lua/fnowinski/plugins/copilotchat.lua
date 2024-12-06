@@ -1,7 +1,7 @@
 return {
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",
-		branch = "main",
+		-- branch = "main",
 		dependencies = {
 			{ "zbirenbaum/copilot.lua", branch = "main" },
 			{ "nvim-lua/plenary.nvim" },

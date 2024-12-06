@@ -3,8 +3,7 @@ return {
 		"williamboman/mason.nvim",
 		event = "BufReadPre",
 		config = function()
-			local mason = require("mason")
-			mason.setup({
+			require("mason").setup({
 				ui = {
 					icons = {
 						package_installed = "✓",
@@ -19,8 +18,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		after = "mason.nvim",
 		config = function()
-			local mason_lspconfig = require("mason-lspconfig")
-			mason_lspconfig.setup({
+			require("mason-lspconfig").setup({
 				ensure_installed = {
 					"tsserver",
 					"html",
@@ -44,8 +42,7 @@ return {
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		after = "mason.nvim",
 		config = function()
-			local mason_tool_installer = require("mason-tool-installer")
-			mason_tool_installer.setup({
+			require("mason-tool-installer").setup({
 				ensure_installed = {
 					"prettier",
 					"stylua",

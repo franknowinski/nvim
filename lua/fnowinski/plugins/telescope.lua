@@ -221,6 +221,12 @@ return {
 			find_files_in_dir("app")
 		end, { desc = "Find files in app directory" })
 
+		-- =======================  Frontend Directory  ==============================
+		keymap.set("n", "<leader>fn", function()
+			find_files_in_dir("frontend")
+		end, { desc = "Find files in frontend directory" })
+
+
 		-- =======================  Models Directory  ===========================
 		keymap.set("n", "<leader>fm", function()
 			find_files_in_dir("app/models")
@@ -377,6 +383,11 @@ return {
 			grep_word_under_cursor_in_current_dir,
 			{ desc = "Grep word in current directory" }
 		)
+
+		-- =======================  Word Under Cursor in Repo  ===============================
+		keymap.set("n", "<leader>aa", function()
+			grep_word_under_cursor_in_dir()
+		end, { desc = "Grep word in repo" })
 
 		-- =======================  Word Under Cursor in App Directory  ===============================
 		keymap.set("n", "<leader>sa", function()
