@@ -55,3 +55,4 @@ opt.swapfile = false
 -- vim.opt_local.suffixesadd:append('.yml')
 -- vim.opt_local.suffixesadd:prepend('.yaml')
 
+vim.opt.suffixesadd:append('.vue')  -- Allow finding .vue files

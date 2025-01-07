@@ -40,6 +40,9 @@ return {
 				"graphql",
 				"query",
 				"vimdoc",
+				"csv",
+				"toml",
+				"vue"
 			},
 			incremental_selection = {
 				enable = true,

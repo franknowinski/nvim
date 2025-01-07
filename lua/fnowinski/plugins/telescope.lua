@@ -138,6 +138,8 @@ return {
 			"--glob",
 			"!**/.git/**", -- Ignore .git directory
 			"--glob",
+			"!**/.git/refs/**", -- Ignore .git directory
+			"--glob",
 			"!**/.tmp/**", -- Ignore .tmp directory
 			"--glob",
 			"!**/tmp/**", -- Ignore tmp directory
@@ -190,6 +192,8 @@ return {
 					"!**/public/**",
 					"--glob",
 					"!**/log/**",
+					"--glob",
+					"!**/.git/**",
 					"--glob",
 					"!**/tmp/**",
 				},

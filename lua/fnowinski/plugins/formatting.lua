@@ -24,6 +24,7 @@ return {
 				ruby = { "standardrb" },
 				ruby_spec = { "rubocop" },
 				slim = { "prettier" },
+				vue = { "prettier" }
 			},
 			-- format_on_save = {
 			-- 	lsp_fallback = false,

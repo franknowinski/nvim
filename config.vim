@@ -1,6 +1,8 @@
 " Find and replace in file
 nmap <space>F :%s/<c-r><c-w>//g<left><left>
 
+let g:bufferline = { 'auto_hide': v:true }
+
 let g:rails_projections = {
       \ "app/controllers/*_controller.rb": {
       \   "test": [
@@ -12,12 +14,6 @@ let g:rails_projections = {
       \     "app/controllers/{}_controller.rb",
       \   ],
       \ }}
-
-"set suffixesadd=.yml,.rb,.js,.html,.css
-"set path=$PWD/**
-
-" Strip whitespace on write
-autocmd BufWritePre * :%s/\s\+$//e
 
 " Sort
 vnoremap <leader>S :sort<cr>
@@ -59,8 +55,7 @@ nmap <space>r viw"0p
 " Copy word under cursor into buffer
 nmap <space>c yiw
 " Copy util end of line
-nnoremap <space>S y$
-
+nnoremap <silent> <space>S y$
 nnoremap q :q<CR>
 
 " Edit files

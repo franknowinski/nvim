@@ -13,6 +13,7 @@ return {
 			python = { "pylint" },
 			ruby = { "rubocop" },
 			ruby_spec = { "rubocop" },
+			-- vue = { "eslint_d" }
 		}
 
 		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
