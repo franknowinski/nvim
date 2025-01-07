@@ -7,13 +7,12 @@ return {
 		{ "folke/neodev.nvim", opts = {} },
 	},
 	config = function()
-		-- import lspconfig plugin
 		local lspconfig = require("lspconfig")
-
 		local mason_lspconfig = require("mason-lspconfig")
-		local cmp_nvim_lsp = require("cmp_nvim_lsp")
-		local keymap = vim.keymap
 		local cmp = require("cmp")
+		local cmp_nvim_lsp = require("cmp_nvim_lsp")
+
+		local keymap = vim.keymap
 		local capabilities = cmp_nvim_lsp.default_capabilities()
 
 		vim.lsp.set_log_level("debug")
@@ -63,10 +62,10 @@ return {
 			settings = {
 				Lua = {
 					diagnostics = {
-						globals = { "vim" }, -- Make the language server recognize "vim" global
+						globals = { "vim" },
 					},
 					completion = {
-						callSnippet = "Replace", -- Use "Replace" for call snippets
+						callSnippet = "Replace",
 					},
 				},
 			},

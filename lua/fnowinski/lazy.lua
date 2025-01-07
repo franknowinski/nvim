@@ -58,7 +58,6 @@ local imports = {
 	{ import = "fnowinski.plugins.which-key" },
 	{ import = "fnowinski.plugins.vim-ruby" },
 	{ import = "fnowinski.plugins.vim-rails" },
-	-- { import = "fnowinski.plugins.multicursors" },
 	{ import = "fnowinski.plugins.lsp" },
 	{ import = "fnowinski.plugins.winresizer" },
 }
