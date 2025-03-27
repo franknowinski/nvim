@@ -15,7 +15,8 @@ vim.opt.rtp:prepend(lazypath)
 vim.cmd([[autocmd FileType ruby setlocal indentkeys-=<:]])
 
 local imports = {
-	{ import = "fnowinski.plugins.telescope" },
+	-- { import = "fnowinski.plugins.avante" },
+	{ import = "fnowinski.plugins.telescope"},
 	{ import = "fnowinski.plugins.abolish" },
 	{ import = "fnowinski.plugins.alpha" },
 	-- { import = "fnowinski.plugins.autosession" },
@@ -26,13 +27,12 @@ local imports = {
 	{ import = "fnowinski.plugins.copilotchat" },
 	{ import = "fnowinski.plugins.comment" },
 	{ import = "fnowinski.plugins.dressing" },
-	{ import = "fnowinski.plugins.easy-motion" },
+	{ import = "fnowinski.plugins.hop" },
 	{ import = "fnowinski.plugins.endwise" },
 	{ import = "fnowinski.plugins.formatting" },
 	{ import = "fnowinski.plugins.gitsigns" },
 	{ import = "fnowinski.plugins.indent-blankline" },
 	{ import = "fnowinski.plugins.init" },
-	{ import = "fnowinski.plugins.linting" },
 	{ import = "fnowinski.plugins.lualine" },
 	{ import = "fnowinski.plugins.neotags" },
 	{ import = "fnowinski.plugins.noice" },
@@ -60,6 +60,7 @@ local imports = {
 	{ import = "fnowinski.plugins.vim-rails" },
 	{ import = "fnowinski.plugins.lsp" },
 	{ import = "fnowinski.plugins.winresizer" },
+	-- { import = "fnowinski.plugins.linting" },
 }
 
 require("lazy").setup({ imports }, {

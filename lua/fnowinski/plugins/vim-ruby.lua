@@ -6,6 +6,10 @@ return {
 	{ "edkolev/tmuxline.vim" },
 	{ "posva/vim-vue", ft = { "vue" } },
 	{ "mg979/vim-visual-multi" },
+	{
+		"christoomey/vim-tmux-navigator",
+		lazy = false
+	},
 	-- { "tpope/vim-projectionist" },
 	-- { "sheerun/vim-polyglot"}
 	-- { "vim-syntastic/syntastic" },

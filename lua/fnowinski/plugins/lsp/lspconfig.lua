@@ -57,6 +57,23 @@ return {
 			},
 		})
 
+		lspconfig.ts_ls.setup({
+			on_attach = function(client, bufnr)
+				-- Optional: Key mappings for LSP functions
+				local function buf_set_keymap(...)
+					vim.api.nvim_buf_set_keymap(bufnr, ...)
+				end
+				local opts = { noremap = true, silent = true }
+
+				buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+				buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+				-- Add more key mappings as needed
+			end,
+			filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+			root_dir = require("lspconfig").util.root_pattern("package.json", "tsconfig.json", ".git"),
+			cmd = { "typescript-language-server", "--stdio" },
+		})
+
 		-- Set up the Lua LSP server
 		lspconfig.lua_ls.setup({
 			settings = {

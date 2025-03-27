@@ -13,6 +13,7 @@ return {
 			python = { "pylint" },
 			ruby = { "rubocop" },
 			ruby_spec = { "rubocop" },
+			mjs = { "eslint_d" },  -- Add this line
 			-- vue = { "eslint_d" }
 		}
 

@@ -200,7 +200,7 @@ return {
 			})
 		end, { desc = "Fuzzy find files including hidden files with custom rg options" })
 
-		keymap.set("n", "<leader>A", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
+		-- keymap.set("n", "<leader>aa", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
 		keymap.set("n", "<leader>jt", "<cmd>TodoTelescope<cr>", { desc = "Find todos" })
 		keymap.set("n", "<leader>m", "<cmd>Telescope buffers<cr>", { desc = "Fuzzy find recent files" })
 		keymap.set("n", "<leader>re", "<cmd>Telescope resume<cr>", { desc = "Resume search" })

@@ -8,8 +8,8 @@ return {
 			formatters_by_ft = {
 				javascript = { "prettier" },
 				typescript = { "prettier" },
-				javascriptreact = { "eslint_custom" },
-				typescriptreact = { "eslint_custom" },
+				javascriptreact = { "prettier" },
+				typescriptreact = { "prettier" },
 				svelte = { "prettier" },
 				css = { "prettier" },
 				html = { "prettier" },
@@ -24,7 +24,9 @@ return {
 				ruby = { "standardrb" },
 				ruby_spec = { "rubocop" },
 				slim = { "prettier" },
-				vue = { "prettier" }
+				vue = { "prettier" },
+				-- eruby = { "prettier" },
+				eruby = { "htmlbeautifier" },
 			},
 			-- format_on_save = {
 			-- 	lsp_fallback = false,

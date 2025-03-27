@@ -10,7 +10,7 @@ return {
 		build = "make tiktoken",
 		opts = {
 			debug = true,
-			--model = "claude-3.5-sonnet",
+			model = "claude-3.5-sonnet",
 			mappings = {
 				complete = {
 					detail = "<C-o><C-o>",

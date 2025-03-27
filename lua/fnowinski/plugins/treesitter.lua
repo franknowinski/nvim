@@ -42,7 +42,8 @@ return {
 				"vimdoc",
 				"csv",
 				"toml",
-				"vue"
+				"vue",
+				"tmux",
 			},
 			incremental_selection = {
 				enable = true,
