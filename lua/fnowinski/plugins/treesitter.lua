@@ -43,7 +43,7 @@ return {
 				"csv",
 				"toml",
 				"vue",
-				"tmux",
+				"tmux"
 			},
 			incremental_selection = {
 				enable = true,

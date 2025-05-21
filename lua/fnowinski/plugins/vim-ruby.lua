@@ -8,7 +8,7 @@ return {
 	{ "mg979/vim-visual-multi" },
 	{
 		"christoomey/vim-tmux-navigator",
-		lazy = false
+		lazy = false,
 	},
 	-- { "tpope/vim-projectionist" },
 	-- { "sheerun/vim-polyglot"}

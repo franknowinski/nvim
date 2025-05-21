@@ -1,16 +1,15 @@
 return {
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",
-		branch = "canary",
-		-- branch = "main",
+		branch = "main",
 		dependencies = {
 			{ "zbirenbaum/copilot.lua" },
 			{ "nvim-lua/plenary.nvim" },
 		},
 		build = "make tiktoken",
 		opts = {
-			debug = true,
-			model = "claude-3.5-sonnet",
+			debug = false,
+			model = "claude-3.7-sonnet",
 			mappings = {
 				complete = {
 					detail = "<C-o><C-o>",

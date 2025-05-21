@@ -20,19 +20,13 @@ return {
 				graphql = { "prettier" },
 				liquid = { "prettier" },
 				lua = { "stylua" },
-				python = { "isort", "black" },
+				python = { "ruff_format" },
 				ruby = { "standardrb" },
 				ruby_spec = { "rubocop" },
 				slim = { "prettier" },
 				vue = { "prettier" },
-				-- eruby = { "prettier" },
 				eruby = { "htmlbeautifier" },
 			},
-			-- format_on_save = {
-			-- 	lsp_fallback = false,
-			-- 	async = false,
-			-- 	timeout_ms = 2000,
-			-- },
 		})
 
 		vim.keymap.set({ "n", "v" }, "<space>P", function()

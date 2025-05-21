@@ -84,3 +84,9 @@ keymap.set("v", "<leader>cf", "<cmd>CopilotChatFix<CR>", { desc = "CopilotChat -
 
 --- Dismiss noice messages ---------
 keymap.set("n", "<leader>nd", "<cmd>NoiceDismiss<CR>", { desc = "Dismiss Noice Message" })
+
+--- CopilotChat Models -----------
+keymap.set("n", "<leader>co", "<cmd>CopilotChatModels<CR>", { desc = "CopilotChat - Models" })
+
+--- Copy file to clipboard ---
+keymap.set('n', '<space>A', ':%y+<CR>:echo "File copied to clipboard"<CR>', { noremap = true, silent = false })
