@@ -63,14 +63,11 @@ return {
 			capabilities = capabilities,
 			offset_encoding = "utf-16",
 			on_attach = function(client, bufnr)
-				-- Optional: Key mappings for LSP functions
-				local function buf_set_keymap(...)
-					vim.api.nvim_buf_set_keymap(bufnr, ...)
-				end
-				local opts = { noremap = true, silent = true }
+				-- Modern key mappings using vim.keymap.set
+				local opts = { noremap = true, silent = true, buffer = bufnr }
 
-				buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-				buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+				keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+				keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
 				-- Add more key mappings as needed
 			end,
 			filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
@@ -106,12 +103,12 @@ return {
 			},
 			on_attach = function(client, bufnr)
 				-- Enable completion triggered by <c-x><c-o>
-				vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+				vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
 
-				-- Mappings.
-				local opts = { noremap = true, silent = true }
+				-- Modern key mappings using vim.keymap.set
+				local opts = { noremap = true, silent = true, buffer = bufnr }
 
-				vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
+				keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
 			end,
 		})
 
@@ -129,14 +126,17 @@ return {
 				opts.desc = "Go to declaration"
 				keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
 
-				opts.desc = "Show LSP definitions"
-				keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
+				-- opts.desc = "Show LSP definitions"
+				-- keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
 
-				opts.desc = "Show LSP implementations"
-				keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp implementations
+				opts.desc = "Show LSP definitions"
+				keymap.set("n", "gd", "<cmd>lua require('telescope.builtin').lsp_definitions({jump_type='vsplit'})<CR>", opts) -- show lsp definitions
+
+				opts.desc = "Show LSP definitions"
+				keymap.set("n", "gi", "<cmd>lua require('telescope.builtin').lsp_implementations({jump_type='vsplit'})<CR>", opts) -- show lsp implementations
 
 				opts.desc = "Show LSP type definitions"
-				keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
+				keymap.set("n", "gt", "<cmd>lua require('telescope.builtin').lsp_type_definitions({jump_type='vsplit'})<CR>", opts) -- show lsp type definitions
 
 				opts.desc = "See available code actions"
 				keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
@@ -154,7 +154,7 @@ return {
 				keymap.set("n", "[d", vim.diagnostic.goto_prev, opts) -- jump to previous diagnostic in buffer
 
 				opts.desc = "Go to next diagnostic"
-				keymap.set("n", "]d", vim.diagnostic.goto_next, opts) -- jump to next diagnostic in buffer
+				keymap.set("n", "]d", vim.diagnostic.goto_next, opts) --
 
 				opts.desc = "Show documentation for what is under cursor"
 				keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
