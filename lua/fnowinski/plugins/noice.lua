@@ -3,7 +3,7 @@ return {
 	event = "VeryLazy",
 	opts = {
 		messages = {
-			enabled = false
+			enabled = false,
 		},
 		-- view = "mini",
 		views = {
@@ -28,6 +28,28 @@ return {
 			},
 		},
 	},
+	routes = {
+		{
+			filter = { event = "msg_show", kind = "", find = "written" },
+			opts = { skip = true },
+		},
+		{
+			filter = { event = "msg_show", kind = "", find = "yank" },
+			opts = { skip = true },
+		},
+		{
+			filter = { event = "msg_show", kind = "", find = "Copilot" },
+			opts = { skip = true },
+		},
+		{
+			filter = { event = "msg_show", kind = "echo", find = "Buffer" },
+			opts = { skip = true },
+		},
+		{
+			filter = { event = "msg_show", kind = "", find = "created" },
+			opts = { skip = true },
+		},
+	},
 	dependencies = {
 		-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
 		"MunifTanjim/nui.nvim",
@@ -39,34 +61,34 @@ return {
 	},
 }
 
-		-- routes = {
-		-- 	{
-		-- 		filter = {
-		-- 			event = "msg_show",
-		-- 			kind = "",
-		-- 			find = "written",
-		-- 		},
-		-- 		opts = { skip = true },
-		-- 	},
-		-- 	{
-		-- 		filter = {
-		-- 			event = "msg_show",
-		-- 			kind = "",
-		-- 			find = "yank",
-		-- 		},
-		-- 		opts = { skip = true },
-		-- 	},
-		-- 	{
-		-- 		filter = {
-		-- 			event = "msg_show",
-		-- 			kind = "",
-		-- 			find = "Copilot"
-		-- 		},
-		-- 		opts = { skip = true },
-		-- 	},
-		-- 	{
-		-- 		filter = { event = "msg_show", kind = "echo", find = "Buffer" },
-		-- 		opts = { skip = true },
-		-- 	},
-		-- },
-		--
+-- routes = {
+-- 	{
+-- 		filter = {
+-- 			event = "msg_show",
+-- 			kind = "",
+-- 			find = "written",
+-- 		},
+-- 		opts = { skip = true },
+-- 	},
+-- 	{
+-- 		filter = {
+-- 			event = "msg_show",
+-- 			kind = "",
+-- 			find = "yank",
+-- 		},
+-- 		opts = { skip = true },
+-- 	},
+-- 	{
+-- 		filter = {
+-- 			event = "msg_show",
+-- 			kind = "",
+-- 			find = "Copilot"
+-- 		},
+-- 		opts = { skip = true },
+-- 	},
+-- 	{
+-- 		filter = { event = "msg_show", kind = "echo", find = "Buffer" },
+-- 		opts = { skip = true },
+-- 	},
+-- },
+--

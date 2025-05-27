@@ -90,3 +90,6 @@ keymap.set("n", "<leader>co", "<cmd>CopilotChatModels<CR>", { desc = "CopilotCha
 
 --- Copy file to clipboard ---
 keymap.set('n', '<space>A', ':%y+<CR>:echo "File copied to clipboard"<CR>', { noremap = true, silent = false })
+
+-- Visual mode page --
+keymap.set('n', '<leader>A', 'ggVG', { noremap = true, desc = "Select all text in file" })

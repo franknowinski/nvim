@@ -23,9 +23,9 @@ return {
 				python = { "ruff_format" },
 				ruby = { "standardrb" },
 				ruby_spec = { "rubocop" },
-				slim = { "prettier" },
 				vue = { "prettier" },
 				eruby = { "htmlbeautifier" },
+				slim = { "htmlbeautifier" },
 			},
 		})
 
