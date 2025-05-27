@@ -1,57 +1,52 @@
 return {
 	{
 		"williamboman/mason.nvim",
-		event = "BufReadPre",
-		config = function()
-			require("mason").setup({
-				ui = {
-					icons = {
-						package_installed = "✓",
-						package_pending = "➜",
-						package_uninstalled = "✗",
-					},
+		version = "v1.10.0", -- Last stable v1.x release
+		opts = {
+			ui = {
+				icons = {
+					package_installed = "✓",
+					package_pending = "➜",
+					package_uninstalled = "✗",
 				},
-			})
-		end,
+			},
+		},
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
-		after = "mason.nvim",
-		config = function()
-			require("mason-lspconfig").setup({
-				ensure_installed = {
-					"tsserver",
-					"html",
-					"cssls",
-					"tailwindcss",
-					"svelte",
-					"lua_ls",
-					"graphql",
-					"emmet_ls",
-					"prismals",
-					"pyright",
-					"ruby_lsp",
-					"rubocop",
-					"solargraph",
-					"yamllint",
-				},
-			})
-		end,
+		version = "v1.32.0", -- Latest stable release
+		dependencies = { "williamboman/mason.nvim", "neovim/nvim-lspconfig" },
+		opts = {
+			ensure_installed = {
+				"cssls",
+				"emmet_ls",
+				"graphql",
+				"html",
+				"lua_ls",
+				"prismals",
+				"pyright",
+				"ruby_lsp",
+				"solargraph",
+				"svelte",
+				"tailwindcss",
+				"ts_ls",
+				"yamlls",
+			},
+			automatic_installation = true,
+		},
 	},
 	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		after = "mason.nvim",
-		config = function()
-			require("mason-tool-installer").setup({
-				ensure_installed = {
-					"prettier",
-					"stylua",
-					"isort",
-					"black",
-					"rubocop",
-					"standardrb",
-				},
-			})
-		end,
+		dependencies = { "williamboman/mason.nvim" },
+		opts = {
+			ensure_installed = {
+				"prettier",
+				"stylua",
+				"isort",
+				"black",
+				"rubocop",
+				"standardrb",
+			},
+		},
 	},
 }

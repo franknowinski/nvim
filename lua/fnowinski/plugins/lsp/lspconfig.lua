@@ -5,15 +5,19 @@ return {
 		"hrsh7th/cmp-nvim-lsp",
 		{ "antosha417/nvim-lsp-file-operations", config = true },
 		{ "folke/neodev.nvim", opts = {} },
+		"williamboman/mason-lspconfig.nvim", -- Add this dependency
 	},
 	config = function()
 		local lspconfig = require("lspconfig")
-		local mason_lspconfig = require("mason-lspconfig")
 		local cmp = require("cmp")
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
 		local keymap = vim.keymap
 		local capabilities = cmp_nvim_lsp.default_capabilities()
+
+		-- Set default position encoding to avoid warnings
+		capabilities.general = capabilities.general or {}
+		capabilities.general.positionEncodings = { "utf-16" }
 
 		vim.lsp.set_log_level("debug")
 
@@ -41,15 +45,13 @@ return {
 			}),
 		})
 
-		-- Setup LSP servers
-		mason_lspconfig.setup({
-			ensure_installed = { "ruby_lsp", "lua_ls" },
-			automatic_installation = true,
-		})
+		-- REMOVED: mason_lspconfig.setup() - this is handled in mason.lua
 
 		-- Set up the Ruby LSP server
 		lspconfig.ruby_lsp.setup({
 			cmd = { vim.fn.expand("~/.rbenv/shims/ruby-lsp") },
+			capabilities = capabilities,
+			offset_encoding = "utf-16",
 			settings = {
 				format = {
 					-- enable = false
@@ -58,6 +60,8 @@ return {
 		})
 
 		lspconfig.ts_ls.setup({
+			capabilities = capabilities,
+			offset_encoding = "utf-16",
 			on_attach = function(client, bufnr)
 				-- Optional: Key mappings for LSP functions
 				local function buf_set_keymap(...)
@@ -76,6 +80,8 @@ return {
 
 		-- Set up the Lua LSP server
 		lspconfig.lua_ls.setup({
+			capabilities = capabilities,
+			offset_encoding = "utf-16",
 			settings = {
 				Lua = {
 					diagnostics = {
@@ -90,6 +96,8 @@ return {
 
 		-- Setup Vue LSP server
 		lspconfig.volar.setup({
+			capabilities = capabilities,
+			offset_encoding = "utf-16",
 			filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
 			init_options = {
 				typescript = {
@@ -156,7 +164,7 @@ return {
 			end,
 		})
 
-		local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
+		local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
 		for type, icon in pairs(signs) do
 			local hl = "DiagnosticSign" .. type
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
