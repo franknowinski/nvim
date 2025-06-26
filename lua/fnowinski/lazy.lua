@@ -60,7 +60,7 @@ local imports = {
 	{ import = "fnowinski.plugins.vim-rails" },
 	{ import = "fnowinski.plugins.lsp" },
 	{ import = "fnowinski.plugins.winresizer" },
-	-- { import = "fnowinski.plugins.linting" },
+	{ import = "fnowinski.plugins.linting" },
 }
 
 require("lazy").setup({ imports }, {

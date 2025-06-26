@@ -93,3 +93,5 @@ keymap.set('n', '<space>A', ':%y+<CR>:echo "File copied to clipboard"<CR>', { no
 
 -- Visual mode page --
 keymap.set('n', '<leader>A', 'ggVG', { noremap = true, desc = "Select all text in file" })
+
+keymap.set('n', '<space>dt', '<cmd>lua vim.diagnostic.disable()<CR>', { desc = 'Disable diagnostics' })

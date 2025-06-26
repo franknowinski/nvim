@@ -15,6 +15,7 @@ return {
 		local keymap = vim.keymap
 		local capabilities = cmp_nvim_lsp.default_capabilities()
 
+
 		-- Set default position encoding to avoid warnings
 		capabilities.general = capabilities.general or {}
 		capabilities.general.positionEncodings = { "utf-16" }
@@ -51,7 +52,7 @@ return {
 		lspconfig.ruby_lsp.setup({
 			cmd = { vim.fn.expand("~/.rbenv/shims/ruby-lsp") },
 			capabilities = capabilities,
-			offset_encoding = "utf-16",
+			position_encoding = "utf-16",
 			settings = {
 				format = {
 					-- enable = false
@@ -61,7 +62,7 @@ return {
 
 		lspconfig.ts_ls.setup({
 			capabilities = capabilities,
-			offset_encoding = "utf-16",
+			position_encoding = "utf-16",
 			on_attach = function(client, bufnr)
 				-- Modern key mappings using vim.keymap.set
 				local opts = { noremap = true, silent = true, buffer = bufnr }
@@ -78,7 +79,7 @@ return {
 		-- Set up the Lua LSP server
 		lspconfig.lua_ls.setup({
 			capabilities = capabilities,
-			offset_encoding = "utf-16",
+			position_encoding = "utf-16",
 			settings = {
 				Lua = {
 					diagnostics = {
@@ -94,7 +95,7 @@ return {
 		-- Setup Vue LSP server
 		lspconfig.volar.setup({
 			capabilities = capabilities,
-			offset_encoding = "utf-16",
+			position_encoding = "utf-16",
 			filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
 			init_options = {
 				typescript = {
@@ -130,7 +131,10 @@ return {
 				-- keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
 
 				opts.desc = "Show LSP definitions"
-				keymap.set("n", "gd", "<cmd>lua require('telescope.builtin').lsp_definitions({jump_type='vsplit'})<CR>", opts) -- show lsp definitions
+				keymap.set("n", "gv", "<cmd>lua require('telescope.builtin').lsp_definitions({jump_type='vsplit'})<CR>", opts) -- show lsp definitions
+				keymap.set("n", "gh", "<cmd>lua require('telescope.builtin').lsp_definitions({jump_type='hsplit'})<CR>", opts) -- show lsp definitions
+				-- keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts) -- show lsp definitions
+				keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
 
 				opts.desc = "Show LSP definitions"
 				keymap.set("n", "gi", "<cmd>lua require('telescope.builtin').lsp_implementations({jump_type='vsplit'})<CR>", opts) -- show lsp implementations
@@ -150,11 +154,11 @@ return {
 				opts.desc = "Show line diagnostics"
 				keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
 
-				opts.desc = "Go to previous diagnostic"
-				keymap.set("n", "[d", vim.diagnostic.goto_prev, opts) -- jump to previous diagnostic in buffer
-
-				opts.desc = "Go to next diagnostic"
-				keymap.set("n", "]d", vim.diagnostic.goto_next, opts) --
+				-- opts.desc = "Go to previous diagnostic"
+				-- keymap.set("n", "[d", vim.diagnostic.goto_prev, opts) -- jump to previous diagnostic in buffer
+				--
+				-- opts.desc = "Go to next diagnostic"
+				-- keymap.set("n", "]d", vim.diagnostic.goto_next, opts) --
 
 				opts.desc = "Show documentation for what is under cursor"
 				keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
