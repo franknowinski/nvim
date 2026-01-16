@@ -9,7 +9,9 @@ return {
 		build = "make tiktoken",
 		opts = {
 			debug = false,
-			model = "claude-sonnet-4",
+			-- model = "gpt-4.1",
+			model = "claude-opus-4.5",
+			-- model = "gpt-5",
 			mappings = {
 				complete = {
 					detail = "<C-o><C-o>",

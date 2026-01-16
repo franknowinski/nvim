@@ -20,12 +20,13 @@ return {
 				graphql = { "prettier" },
 				liquid = { "prettier" },
 				lua = { "stylua" },
-				python = { "ruff_format" },
+				python = { "black" },
 				ruby = { "standardrb" },
 				ruby_spec = { "rubocop" },
 				vue = { "prettier" },
 				eruby = { "htmlbeautifier" },
 				slim = { "htmlbeautifier" },
+				go = { "gofumpt" }
 			},
 		})
 

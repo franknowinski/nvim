@@ -6,14 +6,30 @@ let g:bufferline = { 'auto_hide': v:true }
 let g:rails_projections = {
       \ "app/controllers/*_controller.rb": {
       \   "test": [
-      \     "spec/controllers/{}_controller_spec.rb",  "spec/requests/{}_spec.rb"
+      \     "spec/controllers/{}_controller_spec.rb",
+      \     "spec/requests/{}_spec.rb",
+      \     "spec/requests/**/{}_request_spec.rb"
       \   ],
       \ },
       \ "spec/requests/*_spec.rb": {
       \   "alternate": [
+      \     "app/controllers/**/{}_controller.rb",
       \     "app/controllers/{}_controller.rb",
       \   ],
-      \ }}
+      \ },
+      \ "spec/requests/**/*_request_spec.rb": {
+      \   "alternate": [
+      \     "app/controllers/**/{}_controller.rb",
+      \     "app/controllers/{}_controller.rb",
+      \   ],
+      \ },
+      \ "spec/requests/**/{}_request_spec.rb": {
+      \   "alternate": [
+      \     "app/controllers/**/{}_controller.rb",
+      \     "app/controllers/{}_controller.rb",
+      \   ],
+      \ },
+      \ }
 
 " Sort
 vnoremap <leader>S :sort<cr>
@@ -115,7 +131,7 @@ endfunction
 " Remove binding.pry
 function! RemoveBindingPry()
   " Run the prybaby command on the current file
-  call system('prybaby -r ' . expand('%'))
+  call system('byepry -r .')
 
   edit!
   " Print a message
@@ -123,5 +139,6 @@ function! RemoveBindingPry()
 endfunction
 
 " Map the shortcut 'rb' to call the RemoveBindingPry function
-nnoremap <leader>rb :call RemoveBindingPry()<CR>
+"nnoremap <leader>rb :call RemoveBindingPry()<CR>
 
+nnoremap <leader>rb :!byepry<CR>

@@ -16,6 +16,7 @@ vim.cmd([[autocmd FileType ruby setlocal indentkeys-=<:]])
 
 local imports = {
 	-- { import = "fnowinski.plugins.avante" },
+	-- { import = "fnowinski.plugins.codecompanion" },
 	{ import = "fnowinski.plugins.telescope"},
 	{ import = "fnowinski.plugins.abolish" },
 	{ import = "fnowinski.plugins.alpha" },

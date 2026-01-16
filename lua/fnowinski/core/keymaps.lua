@@ -65,9 +65,14 @@ keymap.set("n", "<leader>cm", function()
 end, { desc = "CopilotChat - Quick chat" })
 
 -- ---------------- CopilotChat Toggle -------------------
+-- keymap.set("n", "<leader>cc", function()
+-- 	require("CopilotChat").toggle() -- Toggle the CopilotChat window
+-- end, { desc = "CopilotChat - Toggle chat" })
+
 keymap.set("n", "<leader>cc", function()
-	require("CopilotChat").toggle() -- Toggle the CopilotChat window
-end, { desc = "CopilotChat - Toggle chat" })
+	local chat = require("CopilotChat")
+	chat.toggle({ selection = require("CopilotChat.select").buffer })
+end, { desc = "CopilotChat - Toggle chat with buffer" })
 
 keymap.set("v", "<leader>cv", ":'<,'>CopilotChat<CR>", { desc = "CopilotChat - Visual mode" })
 
@@ -95,3 +100,6 @@ keymap.set('n', '<space>A', ':%y+<CR>:echo "File copied to clipboard"<CR>', { no
 keymap.set('n', '<leader>A', 'ggVG', { noremap = true, desc = "Select all text in file" })
 
 keymap.set('n', '<space>dt', '<cmd>lua vim.diagnostic.disable()<CR>', { desc = 'Disable diagnostics' })
+
+
+vim.keymap.set('i', '<C-v>', '<Nop>', { noremap = true })
