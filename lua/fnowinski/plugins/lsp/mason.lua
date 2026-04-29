@@ -44,8 +44,6 @@ return {
 				"stylua",
 				"isort",
 				"black",
-				"rubocop",
-				"standardrb",
 			},
 		},
 	},

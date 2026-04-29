@@ -138,6 +138,8 @@ function! RemoveBindingPry()
   echo "Removed bindings"
 endfunction
 
+let g:rspec_command = "Dispatch DD_APM_ENABLED=false bundle exec rspec {spec}"
+
 " Map the shortcut 'rb' to call the RemoveBindingPry function
 "nnoremap <leader>rb :call RemoveBindingPry()<CR>
 

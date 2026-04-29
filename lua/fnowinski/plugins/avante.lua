@@ -4,13 +4,14 @@ return {
 	lazy = false,
 	version = false,
 	build = "make",
-	paste = {
-		enable = false, -- disables the paste keybinding
-	},
 	opts = {
+		provider = "copilot",
+		paste = {
+			enable = false,
+		},
 		providers = {
 			copilot = {
-				model = "gpt-4-1106-preview",
+				model = "claude-opus-4.6",
 			},
 		},
 		permissions = {
@@ -19,7 +20,7 @@ return {
 		debug = false,
 		auto_suggestions_provider = "copilot",
 		mappings = {
-			ask = "<leader>A",
+			ask = "<leader>z",
 			refresh = "<leader>AR",
 			edit = "<leader>AE",
 			files = {
@@ -50,9 +51,6 @@ return {
 			provider = "telescope",
 		},
 	},
-	-- paste = {
-	-- 	enable = false, -- disables the paste keybinding
-	-- },
 	dependencies = {
 		"stevearc/dressing.nvim",
 		"nvim-lua/plenary.nvim",
@@ -72,9 +70,11 @@ return {
 						insert_mode = true,
 					},
 					use_absolute_path = true,
+					show_dir_path_in_prompt = false,
 				},
+				filetypes = {},
 			},
-			keys = false,
+			keys = {},
 		},
 		{
 			"MeanderingProgrammer/render-markdown.nvim",

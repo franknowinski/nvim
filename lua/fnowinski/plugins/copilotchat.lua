@@ -10,7 +10,7 @@ return {
 		opts = {
 			debug = false,
 			-- model = "gpt-4.1",
-			model = "claude-opus-4.5",
+			model = "claude-opus-4.6",
 			-- model = "gpt-5",
 			mappings = {
 				complete = {

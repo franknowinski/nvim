@@ -64,6 +64,11 @@ return {
 		telescope.setup({
 			defaults = {
 				path_display = { "smart" },
+				file_ignore_patterns = {
+					"node_modules",
+					"spec/vcr/*",
+					"log",
+				},
 				mappings = {
 					i = {
 						["<C-u>"] = false,
@@ -90,11 +95,6 @@ return {
 					},
 				},
 			},
-			file_ignore_patterns = {
-				"node_modules",
-				"spec/vcr/*",
-				"log",
-			},
 			pickers = {
 				find_files = {
 					path_display = filenameFirst,
@@ -104,9 +104,11 @@ return {
 				},
 				live_grep = {
 					path_display = filenameFirst,
+					debounce = 200,
 				},
 				grep_string = {
 					path_display = filenameFirst,
+					debounce = 200,
 				},
 				lsp_definitions = {
 					path_display = filenameFirst,
@@ -134,13 +136,13 @@ return {
 
 		local exclusions = {
 			"--hidden",
-			"--no-ignore",
+			-- "--no-ignore",
 			"--ignore-case",
 			"--glob",
 			"!**/.git/**", -- Ignore .git directory
 			"--glob",
-			"!**/.git/refs/**", -- Ignore .git directory
-			"--glob",
+			-- "!**/.git/refs/**", -- Ignore .git directory
+			-- "--glob",
 			"!**/.tmp/**", -- Ignore .tmp directory
 			"--glob",
 			"!**/tmp/**", -- Ignore tmp directory
@@ -161,7 +163,7 @@ return {
 			"--glob",
 			"!**/yarn.lock", -- Ignore yarn files
 			"--glob",
-			"!**/node_modules*", -- Ignore node_modules directory
+			"!**/node_modules/**", -- Ignore node_modules directory
 			"--glob",
 			"!**/app/assets/*", -- Ignore app/assets directory
 			"--glob",
@@ -172,6 +174,24 @@ return {
 			"!**/app/javascript/images/*", -- Ignore app/javascript/images directory
 			"--glob",
 			"!**/vendor/**", -- Ignore vendor directory
+			"--glob",
+			"!**/storage/**", -- Ignore storage directory
+			"--glob",
+			"!**/.bundle/**", -- Ignore .bundle directory
+			"--glob",
+			"!**/*.png", -- Ignore image files
+			"--glob",
+			"!**/*.jpg",
+			"--glob",
+			"!**/*.jpeg",
+			"--glob",
+			"!**/*.gif",
+			"--glob",
+			"!**/*.ico",
+			"--glob",
+			"!**/*.svg",
+			"--glob",
+			"!**/*.webp",
 		}
 
 		-- set keymaps
@@ -282,16 +302,26 @@ return {
 			find_files_in_dir("spec/factories")
 		end, { desc = "Find files in spec/factories directory" })
 
+		-- =======================  Internal Directory (Go)  =====================
+		keymap.set("n", "<leader>fi", function()
+			builtin.find_files({
+				search_dirs = { "internal" },
+				find_command = {
+					"rg",
+					"--files",
+					"--glob",
+					"!**/*_test.go",
+				},
+			})
+		end, { desc = "Find files in internal directory (exclude tests)" })
+
 		-- ======================================================================
 		--                          Fuzzy Search By String
 		-- ======================================================================
 
 		local function fuzzy_search_word_in_dir(dir)
-			require("telescope.builtin").grep_string({
+			require("telescope.builtin").live_grep({
 				shorten_path = true,
-				word_match = "-w",
-				only_sort_text = true,
-				search = "",
 				search_dirs = dir and { dir } or nil,
 				additional_args = function()
 					return vim.iter(exclusions):flatten():totable()
@@ -361,6 +391,21 @@ return {
 			fuzzy_search_word_in_dir("spec/factories")
 		end, { desc = "Search word in spec/factories directory" })
 
+
+		-- =======================  Fuzzy Internal Directory (Go)  =================
+		keymap.set("n", "<space>fi", function()
+			require("telescope.builtin").grep_string({
+				shorten_path = true,
+				word_match = "-w",
+				only_sort_text = true,
+				search = "",
+				search_dirs = { "internal" },
+				file_ignore_patterns = { "*_test.go" },
+				additional_args = function()
+					return vim.iter(exclusions):flatten():totable()
+				end,
+			})
+		end, { desc = "Search word in internal directory (exclude tests)" })
 		-- ======================================================================
 		--                          Word Under Cursor
 		-- ======================================================================
@@ -444,6 +489,21 @@ return {
 			grep_word_under_cursor_in_dir("spec/factories")
 		end, { desc = "Grep word in spec/factories directory" })
 
+		-- =======================  Word Under Cursor in Internal Directory (Go)  ======================
+		keymap.set("n", "<leader>si", function()
+			local word = vim.fn.expand("<cword>")
+			require("telescope.builtin").live_grep({
+				search_dirs = { "internal" },
+				default_text = word,
+				additional_args = function()
+					local args = vim.list_extend({}, exclusions)
+					table.insert(args, "--glob")
+					table.insert(args, "!**/*_test.go")
+					return args
+				end,
+			})
+		end, { desc = "Grep word in internal directory (exclude tests)" })
+
 		-- ======================================================================
 		--                          Exact Word Search
 		-- ======================================================================
@@ -519,5 +579,20 @@ return {
 		keymap.set("n", "<space>sF", function()
 			grep_exact_word_in_dir("spec/factories")
 		end, { desc = "Exact word in spec/factories directory" })
+
+		-- ======================= Exact Word in Internal Directory (Go) =======================
+		keymap.set("n", "<space>si", function()
+			require("telescope").extensions.live_grep_args.live_grep_args({
+				search_dirs = { "internal" },
+				initial_query = "",
+				path_display = filenameFirst,
+				additional_args = function(_)
+					local args = vim.list_extend({}, exclusions)
+					table.insert(args, "--glob")
+					table.insert(args, "!**/*_test.go")
+					return args
+				end,
+			})
+		end, { desc = "Exact word in internal directory (exclude tests)" })
 	end,
 }

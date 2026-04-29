@@ -11,8 +11,8 @@ return {
 			typescriptreact = { "eslint_d" },
 			svelte = { "eslint_d" },
 			-- python = { "pylint" },
-			ruby = { "rubocop" },
-			ruby_spec = { "rubocop" },
+			-- ruby = { "rubocop" },  -- Disabled: causes Ruby version conflicts
+			-- ruby_spec = { "rubocop" },
 			mjs = { "eslint_d" }, -- Add this line
 			-- vue = { "eslint_d" }
 		}

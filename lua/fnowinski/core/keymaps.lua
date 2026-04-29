@@ -65,14 +65,30 @@ keymap.set("n", "<leader>cm", function()
 end, { desc = "CopilotChat - Quick chat" })
 
 -- ---------------- CopilotChat Toggle -------------------
--- keymap.set("n", "<leader>cc", function()
--- 	require("CopilotChat").toggle() -- Toggle the CopilotChat window
--- end, { desc = "CopilotChat - Toggle chat" })
-
 keymap.set("n", "<leader>cc", function()
-	local chat = require("CopilotChat")
-	chat.toggle({ selection = require("CopilotChat.select").buffer })
-end, { desc = "CopilotChat - Toggle chat with buffer" })
+	require("CopilotChat").toggle() -- Toggle the CopilotChat window
+end, { desc = "CopilotChat - Toggle chat" })
+
+-- keymap.set("n", "<leader>cc", function()
+-- 	local chat = require("CopilotChat")
+-- 	chat.toggle({ selection = require("CopilotChat.select").buffer })
+-- end, { desc = "CopilotChat - Toggle chat with buffer" })
+
+vim.api.nvim_create_autocmd("BufEnter", {
+	pattern = "copilot-chat",
+	callback = function()
+		vim.keymap.set("n", "<space>f", "i#buffer<space>", { buffer = true, desc = "Insert #buffer reference" })
+	end,
+})
+
+-- vim.api.nvim_create_autocmd("BufEnter", {
+-- 	pattern = "copilot-chat",
+-- 	callback = function()
+-- 		vim.keymap.set("n", "<space>f", function()
+-- 			require("CopilotChat").ask("#buffer")
+-- 		end, { buffer = true, desc = "Add buffer context" })
+-- 	end,
+-- })
 
 keymap.set("v", "<leader>cv", ":'<,'>CopilotChat<CR>", { desc = "CopilotChat - Visual mode" })
 
@@ -103,3 +119,8 @@ keymap.set('n', '<space>dt', '<cmd>lua vim.diagnostic.disable()<CR>', { desc = '
 
 
 vim.keymap.set('i', '<C-v>', '<Nop>', { noremap = true })
+
+-- Copy absolute path to clipboard --
+vim.keymap.set('n', '<leader>yf', function()
+  vim.fn.setreg('+', vim.fn.expand('%'))
+end, { desc = 'Copy relative path' })
